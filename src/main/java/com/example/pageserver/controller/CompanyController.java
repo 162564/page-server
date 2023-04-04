@@ -3,12 +3,14 @@ package com.example.pageserver.controller;
 import com.example.pageserver.entity.Company;
 import com.example.pageserver.service.CompanyService;
 import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/company")
+@CrossOrigin
 public class CompanyController {
 
     @Resource
@@ -17,5 +19,11 @@ public class CompanyController {
     @GetMapping("/select")
     public Company selectByCid(Integer cid){
         return companyService.selectByCid(cid);
+    }
+
+    @GetMapping("/checkInfo")
+    public Boolean checkInfo(String username,String password){
+        companyService.checkInfo(username, password);
+        return true;
     }
 }

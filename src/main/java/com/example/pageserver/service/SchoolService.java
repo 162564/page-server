@@ -7,4 +7,6 @@ public interface SchoolService {
     Integer insert(School school);
     /*select*/
     School selectBySid(Integer sid);
+
+    School checkInfo(String username, String password);
 }

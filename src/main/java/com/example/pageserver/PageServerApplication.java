@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@MapperScan("com.example.pageserver.dao")
+@MapperScan("com.example.pageserver.mapper")
 @SpringBootApplication
 public class PageServerApplication {
 

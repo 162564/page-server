@@ -8,5 +8,6 @@ public class School {
     private String name;
     private String address;
     private String telephone;
-    private String level;
+    private String username;
+    private String password;
 }

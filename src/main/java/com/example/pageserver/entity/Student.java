@@ -11,5 +11,6 @@ public class Student {
     private String company;
     private String address;
     private Boolean state;
-    private String level;
+    private String username;
+    private String password;
 }
