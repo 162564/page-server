@@ -11,7 +11,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public String exceptionHandler(MyException e){
-        System.out.println(e.getMsg());
-        return e.getMsg();
+        String msg = e.getMsg();
+        System.out.println(msg);
+        return msg;
     }
 }
