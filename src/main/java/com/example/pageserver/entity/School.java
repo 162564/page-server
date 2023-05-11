@@ -10,4 +10,6 @@ public class School {
     private String telephone;
     private String username;
     private String password;
+    private String msg;
+
 }

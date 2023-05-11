@@ -24,7 +24,7 @@ public class ImageController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDisposition(ContentDisposition.builder("attachment")
-                .filename("data.bin").build());
+                .filename("data.jpeg").build());
         return new ResponseEntity<>(data, headers, HttpStatus.OK);
     }
 }

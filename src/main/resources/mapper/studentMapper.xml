@@ -3,10 +3,47 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pageserver.mapper.StudentMapper">
+    <sql id="impInfo">
+        sid,username,password,gender,age,name,telephone,company,school,address,state,target,idea
+    </sql>
+    <select id="selectAll" resultType="student">
+        select <include refid="impInfo"></include> from student
+    </select>
+    <select id="selectByInfo" resultType="student" parameterType="string">
+        select <include refid="impInfo"></include> from student where username = #{username} and password = #{password}
+    </select>
     <select id="selectBySid" resultType="student" parameterType="int">
-        select * from student where sid = #{sid}
+        select <include refid="impInfo"></include> from student where sid = #{sid}
     </select>
-    <select id="checkInfo" resultType="student" parameterType="string">
-        select * from student where username = #{username} and password = #{password}
+    <select id="selectResumeBySid" resultType="student" parameterType="int">
+        select sid,information from student where sid = #{sid}
     </select>
+    <select id="selectUnderemployed" resultType="int" parameterType="int">
+        select count(1) from student where state = '未就业'
+    </select>
+    <select id="selectEmployment" resultType="int" parameterType="int">
+        select count(1) from student where state = '已就业'
+    </select>
+    <select id="checkInfo" resultType="int" parameterType="string">
+        select count(1) from student where username = #{username} and password = #{password}
+    </select>
+    <select id="downloadInfo" parameterType="int" resultType="student">
+        select information from student where sid = #{sid}
+    </select>
+    <select id="selectNotice" parameterType="int" resultType="string">
+        select msg from student where sid = #{sid}
+    </select>
+    <update id="updateInfo" parameterType="student">
+        update student set name = #{name},gender = #{gender},age = #{age},address = #{address},telephone = #{telephone},company = #{company},state = #{state}
+        where sid = #{sid}
+    </update>
+    <update id="updateState" parameterType="student">
+        update student set state = #{state} where sid = #{sid}
+    </update>
+    <update id="uploadResume" parameterType="student">
+        update student set information = #{information} where sid = #{sid}
+    </update>
+    <update id="removeResume" parameterType="student">
+        update student set information = #{information} where sid = #{sid}
+    </update>
 </mapper>

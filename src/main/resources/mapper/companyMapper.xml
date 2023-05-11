@@ -3,10 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.pageserver.mapper.CompanyMapper">
+    <sql id="impInfo">
+        cid,name, companyType, beginDate, salary, request, principal, postIntroduce, companyIntroduce, scale, address, telephone,msg
+    </sql>
     <select id="selectByCid" resultType="company" parameterType="int">
-        select * from company where cid = #{cid}
+        select <include refid="impInfo"></include> from company where cid = #{cid}
     </select>
     <select id="checkInfo" resultType="company" parameterType="string">
-        select * from company where username = #{username} and password = #{password}
+        select <include refid="impInfo"></include> from company where username = #{username} and password = #{password}
     </select>
+    <select id="selectAll" resultType="company">
+        select <include refid="impInfo"></include> from company
+    </select>
+    <select id="selectAllApply" resultType="company" parameterType="int">
+        select cid,readyEmployee from company where cid =#{cid}
+    </select>
+    <select id="selectAllEmployee" resultType="company" parameterType="int">
+        select cid,employee from company where cid =#{cid}
+    </select>
+    <select id="selectSend" resultType="company">
+        select cid,readyEmployee,employee from company where cid = #{cid}
+    </select>
+    <update id="sendResume" parameterType="company">
+        update company set readyEmployee = #{readyEmployee} where cid = #{cid}
+    </update>
+    <update id="updateInfo" parameterType="company">
+        update company set name = #{name},companyType = #{companyType},principal = #{principal},request = #{request},telephone = #{telephone},salary = #{salary},scale = #{scale},address = #{address},postIntroduce = #{postIntroduce},companyIntroduce = #{companyIntroduce},beginDate = #{beginDate} where cid = #{cid}
+    </update>
+    <update id="applyEmployee" parameterType="company">
+        update company set readyEmployee = #{readyEmployee} where cid = #{cid}
+    </update>
+    <update id="puaEmployee" parameterType="company">
+        update company set employee = #{employee} where cid = #{cid}
+    </update>
 </mapper>
